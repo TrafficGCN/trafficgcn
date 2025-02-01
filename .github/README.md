@@ -159,6 +159,7 @@ Each component includes a Dockerfile for containerization. To run the entire sta
    ```bash
    brew install postgresql@15
    brew services start postgresql@15
+   brew link postgresql@15 --force
    ```
 
 2. Create database user:
