@@ -24,6 +24,42 @@ The project consists of several components:
 
 ## Setup Instructions
 
+### Database Setup
+
+The application uses PostgreSQL as its database. You can set it up using either Docker or a native installation.
+
+#### Option 1: Using Docker (Recommended)
+
+1. Pull and run PostgreSQL container:
+   ```bash
+   docker run --name refarch-postgres \
+     -e POSTGRES_USER=admin \
+     -e POSTGRES_PASSWORD=admin \
+     -p 5432:5432 \
+     -d postgres:latest
+   ```
+
+#### Option 2: Native Installation
+
+1. Install PostgreSQL from the [official website](https://www.postgresql.org/download/)
+2. Start the PostgreSQL service
+3. Create a new user and database:
+   ```sql
+   CREATE USER admin WITH PASSWORD 'admin';
+   ALTER USER admin WITH SUPERUSER;
+   ```
+
+#### Verify Database Connection
+
+The application is configured to connect to:
+- Host: localhost
+- Port: 5432
+- Database: postgres
+- Username: admin
+- Password: admin
+
+Note: The application will automatically create and manage the database schema when it starts, as it's configured with `spring.jpa.hibernate.ddl-auto: create-drop`.
+
 ### Backend Setup
 
 1. Install JDK 21
