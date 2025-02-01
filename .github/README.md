@@ -1,54 +1,139 @@
-## Customize this file after creating the new REPO and remove this lines.
-What to adjust:  
-* Add the your project or repo name direct under the logo.
-* Add a short and long desciption.
-* Add links for your final repo to report a bug or request a feature.
-* Add list of used technologies.
-* If you have, add a roadmap or remove this section.
-* Fill up the section for set up and documentation.
- * Start in this file only with documentation and link to the docs folder.
-* Add more project shields. Use [shields.io](https://shields.io/) with style `for-the-badge`.
+# TrafficGCN
 
-## ------- end to remove -------
-<!-- add Project Logo, if existing -->
+A modern microservices-based application demonstrating enterprise architecture patterns.
 
-# repo or project name
+## System Requirements
 
-[![Made with love by it@M][made-with-love-shield]][itm-opensource]
-<!-- feel free to add more shields, style 'for-the-badge' -> see https://shields.io/badges -->
+### Backend Development
+- Java Development Kit (JDK) 21
+- Maven (for dependency management)
 
-*Add a description from your project here.*
+### Frontend Development
+- Node.js (version >=18 and <=20)
+- npm (included with Node.js)
 
+## Project Structure
 
-### Built With
+The project consists of several components:
 
-The documentation project is built with technologies we use in our projects:
+- `refarch-backend/`: Spring Boot backend service
+- `refarch-frontend/`: Vue.js 3 frontend application
+- `refarch-eai/`: Enterprise Application Integration service
+- `refarch-webcomponent/`: Reusable Vue.js web components
+- `stack/`: Docker Compose configuration and Keycloak setup
 
-* *write here the list of used technologies*
+## Setup Instructions
 
-## Roadmap
+### Backend Setup
 
-*if you have a ROADMAP for your project add this here*
+1. Install JDK 21
+2. Navigate to the backend directory:
+   ```bash
+   cd refarch-backend
+   ```
+3. Run the application:
+   - With security: `./runLocal.sh` (Linux/Mac) or `runLocal.bat` (Windows)
+   - Without security: `./runLocalNoSecurity.sh` (Linux/Mac) or `runLocalNoSecurity.bat` (Windows)
 
+### Frontend Setup
 
-See the [open issues](#) for a full list of proposed features (and known issues).
+1. Install Node.js (version 18-20)
+2. Navigate to the frontend directory:
+   ```bash
+   cd refarch-frontend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Available commands:
+   - `npm run dev`: Start development server
+   - `npm run build`: Build for production
+   - `npm run preview`: Preview production build
+   - `npm run test`: Run tests
+   - `npm run lint`: Check code quality
+   - `npm run fix`: Fix code style issues
 
+### Web Component Setup
 
-## Set up
-*how can i start and fly this project*
+1. Navigate to the web component directory:
+   ```bash
+   cd refarch-webcomponent
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Available commands:
+   - `npm run dev`: Start development server
+   - `npm run build`: Build for production
+   - `npm run preview`: Preview production build
+   - `npm run test`: Run tests
+   - `npm run lint`: Check code quality
+   - `npm run fix`: Fix code style issues
 
-## Documentation
-*what insights do you have to tell*
+## Docker Support
+
+Each component includes a Dockerfile for containerization. To run the entire stack:
+
+1. Navigate to the stack directory:
+   ```bash
+   cd stack
+   ```
+2. Start the services:
+   ```bash
+   docker-compose up
+   ```
+
+## Architecture Overview
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+graph TB
+    FE[Frontend Vue.js App]
+    WC[Web Components]
+    BE[Backend Service]
+    EAI[EAI Service]
+    KC[Keycloak Auth]
+
+    FE --> BE
+    FE --> KC
+    WC --> BE
+    BE --> EAI
+    BE --> KC
 ```
 
-use [diagrams](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams).
+- **Frontend**: Vue.js 3 application with TypeScript and Vuetify
+- **Web Components**: Reusable UI components built with Vue.js
+- **Backend**: Spring Boot service handling business logic
+- **EAI**: Enterprise Application Integration service
+- **Authentication**: Keycloak-based security
+
+## Development Workflow
+
+1. Start the backend service using the provided scripts
+2. Run the frontend development server with `npm run dev`
+3. Make changes to the code
+4. Use the lint and test commands to ensure code quality
+5. Build for production when ready
+
+## Tech Stack
+
+- **Backend**:
+  - Java 21
+  - Spring Boot
+  - Maven
+
+- **Frontend**:
+  - Vue.js 3
+  - TypeScript
+  - Vuetify
+  - Vite
+  - Vitest for testing
+
+- **Infrastructure**:
+  - Docker
+  - Docker Compose
+  - Keycloak
 
 ## Contributing
 
