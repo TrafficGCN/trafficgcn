@@ -120,6 +120,101 @@ Each component includes a Dockerfile for containerization. To run the entire sta
    ```bash
    docker-compose up
    ```
+## macOS Setup Guide
+
+### Prerequisites Installation
+
+1. Install Homebrew (Package Manager):
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+2. Install Git:
+   ```bash
+   brew install git
+   ```
+
+3. Install Java 21:
+   ```bash
+   brew install openjdk@21
+   echo 'export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+4. Install Maven:
+   ```bash
+   brew install maven
+   ```
+
+5. Install Node.js:
+   ```bash
+   brew install node@20
+   echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+### Database Setup
+
+1. Install PostgreSQL:
+   ```bash
+   brew install postgresql@15
+   brew services start postgresql@15
+   ```
+
+2. Create database user:
+   ```bash
+   psql postgres
+   CREATE USER admin WITH PASSWORD 'admin';
+   ALTER USER admin WITH SUPERUSER;
+   \q
+   ```
+
+### Project Setup
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
+   ```
+
+2. Setup Backend:
+   ```bash
+   cd refarch-backend
+   chmod +x runLocal.sh
+   ./runLocal.sh
+   ```
+
+3. Setup Frontend (in a new terminal):
+   ```bash
+   cd refarch-frontend
+   npm install
+   npm run dev
+   ```
+
+4. Setup Web Components (in a new terminal):
+   ```bash
+   cd refarch-webcomponent
+   npm install
+   npm run dev
+   ```
+
+### Verify Installation
+
+1. Backend should be running at: http://localhost:8080
+2. Frontend should be running at: http://localhost:5173
+3. Web Components dev server should be running at: http://localhost:5174
+
+### Docker Alternative
+
+If you prefer using Docker:
+
+1. Install Docker Desktop for Mac from https://www.docker.com/products/docker-desktop
+
+2. Start the entire stack:
+   ```bash
+   cd stack
+   docker-compose up
+   ```
 
 ## Architecture Overview
 
